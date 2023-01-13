@@ -119,20 +119,4 @@ class DesignationsController extends AbstractController
         return $this->redirectToRoute('app_designations_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    /**
-     * @Route("/{id}", name="app_sms_send", methods={"POST"})
-     */
-    public function SMSSend(TexterInterface $texter)
-    {
-        $sms = new SmsMessage(
-            // the phone number to send the SMS message to
-            '+261348723321',
-            // the message
-            'Essai envoi SMS avec Symfony!',
-            // optionally, you can override default "from" defined in transports
-            '261348723321',
-        );
-
-        $sentMessage = $texter->send($sms);
-    }
 }
