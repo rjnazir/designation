@@ -1,0 +1,41 @@
+
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            <i class="nav-icon fa fa-eye"></i>
+            Service
+        </h3>
+        <div class="card-tools">
+            <a href="{{ path('app_services_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Service</th>
+                    <td>{{ service.nomSce }}</td>
+                </tr>
+                <tr>
+                    <th>Type service</th>
+                    <td>{{ service.typesService.nomTypeSce }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+            <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_services_index') }}">Retour à la liste</a></div>
+            <div class="col col-4">{{ include('services/_delete_form.html.twig') }}</div>
+            <div class="col col-4"><a class="btn btn-sm btn-warning" href="{{ path('app_services_edit', {'id': service.id}) }}"><i class="fas fa-edit"></i>  Modifier</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

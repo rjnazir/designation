@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../../adminlte3.1.0/plugins/fontawesome-free/css/all.min.css">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../adminlte3.1.0/dist/css/adminlte.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../adminlte3.1.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../adminlte3.1.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../adminlte3.1.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link href="blog.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/blog/">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ path('app_home') }}" class="nav-link">Home</a>
+            </li>
+            {# <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ path('app_logout') }}" class="nav-link">Se déconnecter</a>
+            </li> #}
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Navbar Deconnexion -->
+            {# <li class="nav-item">
+                <a href="" class="btn btn-sm btn-outline-info btn-block btn-md">
+                    <i class="fa  fa-user">  </i>
+                    <b>Profil</b>
+                </a>
+            </li> #}
+            <li class="nav-item">
+                <a href="{{ path('app_logout') }}" class="btn btn-sm btn-outline-danger btn-block btn-md">
+                    <i class="fa fa-door-open">  </i>
+                    <b>Se déconnecter</b>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-info {# sidebar-dark-primary #} elevation-4">
+        <!-- Brand Logo -->
+        <a href="{{ path('app_home') }}" class="brand-link">
+            <img src="../../images/logo_gn.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light"><b>Désignation</b> SCE</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="../../adminlte3.1.0/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="{{ path('app_user_show', {'id': app.user.id}) }}" class="d-block text-capitalize">{% if app.user %}Bonjour {{ app.user.userIdentifier }}!{% endif %}</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.sidebar -->
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header text-bold">
+                    <i class="nav-icon fa fa-bars"></i>
+                    MISE A JOUR
+                </li>
+                <li class="nav-item">             
+                    <a href="{{ path('app_designations_index') }}" class="nav-link">
+                        <i class="nav-icon fa fa-file text-primary"></i>
+                        Désignations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_absences_index') }}" class="nav-link">
+                        <i class="nav-icon fa fa-user-times text-info"></i>
+                        Absences
+                    </a>          
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-header text-bold">
+                    <i class="nav-icon fa fa-database"></i>
+                    MAJ BASES DE DONNEES
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-table"></i>
+                        <p>
+                            Les tables
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ path('app_personnels_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-users text-green"></i>
+                                <p class="text">Personnels</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_unites_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-university text-maroon"></i>
+                                <p class="text">Unites</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_motifs_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-book-medical text-danger"></i>
+                                <p class="text">Motifs absences</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_type_armements_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-rocket text-orange"></i>
+                                <p class="text">Armements</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_munitions_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-bullseye text-lightblue"></i>
+                                <p class="text">Munitions</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_transports_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-truck text-yellow"></i>
+                                <p class="text">Transports</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_types_services_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-star text-navy"></i>
+                                <p class="text">Types services</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_services_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-flag text-info"></i>
+                                <p class="text">Services</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_tenues_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-podcast text-fuchsia"></i>
+                                <p class="text">Tenues</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-header text-bold">
+                    <i class="nav-icon fa fa-users"></i>
+                    ADMINISTRATEUR
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_user_index') }}" class="nav-link">
+                        <i class="nav-icon fa fa-user text-light"></i>
+                        Utilisateurs
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+      <!-- /.sidebar-menu -->
+    </aside>
+    <!-- /.sidebar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row {# mb-2 #}">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body bg-primary">
+                                <h1 class="m-0 text-uppercase text-md-center text-bold text-light">Service des unités élémentaires</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    {# <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard v3</li>
+                        </ol>
+                    </div> #}
+                    <!-- /.col -->
+                </div><!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col col-12">
+                        {% block body %}{% endblock %}
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <strong>Copyright GptAnalamanga&copy; Dec 2022 <a href=""></a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 1.0.0
+        </div>
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="../../adminlte3.1.0/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../../adminlte3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE -->
+<script src="../../adminlte3.1.0/dist/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="../../adminlte3.1.0/plugins/chart.js/Chart.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="../../adminlte3.1.0/dist/js/pages/dashboard3.js"></script>
+
+{# Ajouté par le developpeur #}
+<!-- DataTables  & Plugins -->
+<script src="../../adminlte3.1.0/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/jszip/jszip.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../adminlte3.1.0/dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+$(function () {
+    $("#example1").DataTable({
+    "responsive": true, "lengthChange": false, "autoWidth": false,
+    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+    "paging": true,
+    "lengthChange": false,
+    "searching": false,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+    });
+});
+</script>
+{# Fin ajout #}
+</body>
+</html>

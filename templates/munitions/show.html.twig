@@ -1,0 +1,45 @@
+
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Munition{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            <i class="nav-icon fa fa-eye"></i>
+                Munition
+        </h3>
+        <div class="card-tools">
+            <a href="{{ path('app_munitions_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Dénomination</th>
+                    <td>{{ munition.nomMun }}</td>
+                </tr>
+                <tr>
+                    <th>Lot</th>
+                    <td>{{ munition.lotMun }}</td>
+                </tr>
+                <tr>
+                    <th>Calibre</th>
+                    <td>{{ munition.calibreMun }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+            <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_munitions_index') }}">Retour à la liste</a></div>
+            <div class="col col-4">{{ include('munitions/_delete_form.html.twig') }}</div>
+            <div class="col col-4"><a class="btn btn-sm btn-warning" href="{{ path('app_munitions_edit', {'id': munition.id}) }}"><i class="fas fa-edit"></i>  Modifier</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

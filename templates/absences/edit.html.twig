@@ -1,0 +1,35 @@
+
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Modifier absence{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            <i class="nav-icon fa fa-edit"></i>
+            Modifier absence
+        </h3>
+        <div class="card-tools">
+            <a href="{{ path('app_absences_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+            {{ message }}
+    </div>
+    {% endfor %}
+    <div class="card-body">
+        {{ include('absences/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+                <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_absences_index') }}">Retour à la liste</a></div>
+                <div class="col col-4">{{ include('absences/_delete_form.html.twig') }}</div>
+                <div class="col col-4"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

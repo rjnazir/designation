@@ -1,0 +1,163 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}TypeArmements index{% endblock %}
+
+{% block body %}
+    <h1>TypeArmements index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_arm</th>
+                <th>Abreviation_arm</th>
+                <th>Arm_created</th>
+                <th>Arm_updated</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_armement in type_armements %}
+            <tr>
+                <td>{{ type_armement.id }}</td>
+                <td>{{ type_armement.nomArm }}</td>
+                <td>{{ type_armement.abreviationArm }}</td>
+                <td>{{ type_armement.armCreated ? type_armement.armCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ type_armement.armUpdated ? type_armement.armUpdated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_type_armements_show', {'id': type_armement.id}) }}">show</a>
+                    <a href="{{ path('app_type_armements_edit', {'id': type_armement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_armements_new') }}">Create new</a>
+{% endblock %} #}
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Liste des types armements{% endblock %}
+
+{% block body %}
+<div class="card">
+    <!-- Card-header -->
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            {# <a href="{{ path('app_type_armements_index') }}" class="btn btn-sm btn-primary"> #}
+                <i class="nav-icon fa fa-list"></i>
+                Liste des types armements
+            {# </a> #}
+        </h3>
+        <div class="card-tools">
+            {# <a href="{{ path('app_motifs_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-print"></i>
+            </a> #}
+            <a href="{{ path('app_type_armements_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div class="row mb-2">
+            {% for message in app.flashes('success') %}
+            <div class="col col-12 alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="col col-12">
+                <table id="example1" class="table table-sm table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Type armement</th>
+                        <th>Abréviation type armement</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for type_armement in type_armements %}
+                {% set i = ( i | default(0) ) + 1 %}
+                    <tr>
+                        <td class="text-center">{{ i }}</td>
+                        <td>{{ type_armement.nomArm }}</td>
+                        <td>{{ type_armement.abreviationArm }}</td>
+                        <td class="text-center">
+                            <a href="{{ path('app_type_armements_show', {'id': type_armement.id}) }}" class="btn btn-sm btn-secondary">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{{ path('app_type_armements_edit', {'id': type_armement.id}) }}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{ path('app_type_armements_delete', {'id': type_armement.id}) }}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr class="bg-warning">
+                        <td class="text-center" colspan="4">Pas de type d'armement enregistré</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th class="text-right" colspan="5">
+                        <a href="{{ path('app_type_armements_new') }}" class="btn btn-sm btn-primary">
+                            <i class="fa fa-plus"></i> Créer type armement
+                        </a>
+                    </th>
+                </tr>
+                </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {# Ajouté par le developpeur #}
+    <!-- Bootstrap 4 -->
+    <script src="../../adminlte3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../../adminlte3.1.0/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/jszip/jszip.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    {# <script src="../../adminlte3.1.0/dist/js/demo.js"></script> #}
+    <!-- Page specific script -->
+    <script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+    </script>
+{% endblock %}
+{# Fin ajout #}

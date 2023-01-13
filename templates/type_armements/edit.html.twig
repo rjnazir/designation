@@ -1,0 +1,48 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Edit TypeArmements{% endblock %}
+
+{% block body %}
+    <h1>Edit TypeArmements</h1>
+
+    {{ include('type_armements/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_type_armements_index') }}">back to list</a>
+
+    {{ include('type_armements/_delete_form.html.twig') }}
+{% endblock %} #}
+
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Modifier type d'armement{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            <i class="nav-icon fa fa-edit"></i>
+            Modifier type d'armement
+        </h3>
+        <div class="card-tools">
+            <a href="{{ path('app_type_armements_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+            {{ message }}
+    </div>
+    {% endfor %}
+    <div class="card-body">
+        {{ include('type_armements/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+                <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_type_armements_index') }}">Retour à la liste</a></div>
+                <div class="col col-4">{{ include('type_armements/_delete_form.html.twig') }}</div>
+                <div class="col col-4"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Créer service externe{% endblock %}
+
+{% block body %}
+<div class="card">
+        <div class="card-header bg-primary">
+                <h3 class="card-title">
+                        {# <a href="{{ path('app_motifs_index') }}" class="btn btn-sm btn-primary"> #}
+                                <i class="nav-icon fa fa-plus"></i>
+                                Créer service externe
+                        {# </a> #}
+                </h3>
+        </div>
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+                {{ message }}
+        </div>
+        {% endfor %}
+        <div class="card-body">
+                {{ include('designations/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+        </div>
+        <div class="card-footer">
+                <div class="row text-center">
+                        <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_designations_index') }}">Retour à la liste</a></div>
+                        <div class="col col-4"></div>
+                        <div class="col col-4"></div>
+                </div>
+        </div>
+</div>
+{% endblock %}

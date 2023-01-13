@@ -1,0 +1,9 @@
+admin	1234
+user	1234
+
+
+Amle designation niteny CDT CIRGN hoe tokony atokana ny externa sy ny ambiny dia efa nozarana roa,dia ny olana tsy voavahako eo amle 
+mampiseho ny désignation du jour, ilay date enregistré misy heure dis tsy tafavoakako ilay format tsy misy heure
+
+
+Autres no nataoko anaran'ilay table tsy misy BS

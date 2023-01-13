@@ -1,0 +1,78 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Absences{% endblock %}
+
+{% block body %}
+    <h1>Absences</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ absence.id }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut_abs</th>
+                <td>{{ absence.dateDebutAbs ? absence.dateDebutAbs|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin_abs</th>
+                <td>{{ absence.dateFinAbs ? absence.dateFinAbs|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_absences_index') }}">back to list</a>
+
+    <a href="{{ path('app_absences_edit', {'id': absence.id}) }}">edit</a>
+
+    {{ include('absences/_delete_form.html.twig') }}
+{% endblock %} #}
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Détail de l'absence{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            <i class="nav-icon fa fa-eye"></i>
+            Détail de l'absence
+        </h3>
+        <div class="card-tools">
+            <a href="{{ path('app_absences_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Personnel</th>
+                    <td>{{ absence.personnels ? absence.personnels.InZoneDeListe : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Motif d'absence</th>
+                    <td>{{ absence.motifs ? absence.motifs.abreviationMtf : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Début de l'absence</th>
+                    <td>{{ absence.dateDebutAbs ? absence.dateDebutAbs|date('d/m/Y H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Fin de l'absence</th>
+                    <td>{{ absence.dateFinAbs ? absence.dateFinAbs|date('d/m/Y H:i:s') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+            <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_absences_index') }}">Retour à la liste</a></div>
+            <div class="col col-4">{{ include('absences/_delete_form.html.twig') }}</div>
+            <div class="col col-4"><a class="btn btn-sm btn-warning" href="{{ path('app_absences_edit', {'id': absence.id}) }}"><i class="fas fa-edit"></i>  Modifier</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

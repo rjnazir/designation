@@ -1,0 +1,78 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}TypeArmements{% endblock %}
+
+{% block body %}
+    <h1>TypeArmements</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ type_armement.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_arm</th>
+                <td>{{ type_armement.nomArm }}</td>
+            </tr>
+            <tr>
+                <th>Abreviation_arm</th>
+                <td>{{ type_armement.abreviationArm }}</td>
+            </tr>
+            <tr>
+                <th>Arm_created</th>
+                <td>{{ type_armement.armCreated ? type_armement.armCreated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Arm_updated</th>
+                <td>{{ type_armement.armUpdated ? type_armement.armUpdated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_armements_index') }}">back to list</a>
+
+    <a href="{{ path('app_type_armements_edit', {'id': type_armement.id}) }}">edit</a>
+
+    {{ include('type_armements/_delete_form.html.twig') }}
+{% endblock %} #}
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Type de service{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            <i class="nav-icon fa fa-eye"></i>
+            Type de service
+        </h3>
+        <div class="card-tools">
+            <a href="{{ path('app_type_armements_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Type d'armement</th>
+                    <td>{{ type_armement.nomArm }}</td>
+                </tr>
+                <tr>
+                    <th>Abréviation</th>
+                    <td>{{ type_armement.abreviationArm }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+            <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_type_armements_index') }}">Retour à la liste</a></div>
+            <div class="col col-4">{{ include('type_armements/_delete_form.html.twig') }}</div>
+            <div class="col col-4"><a class="btn btn-sm btn-warning" href="{{ path('app_type_armements_edit', {'id': type_armement.id}) }}"><i class="fas fa-edit"></i>  Modifier</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

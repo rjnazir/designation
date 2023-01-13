@@ -1,0 +1,96 @@
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Designations{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            <i class="nav-icon fa fa-eye"></i>
+                Designation
+        </h3>
+        <div class="card-tools">
+            <a href="{{ path('app_designations_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+        <tbody>
+            <tr>
+                <th>N°</th>
+                <td>{{ designation.id }}</td>
+            </tr>
+            <tr>
+                <th>Personnel</th>
+                <td>{{ designation.personnels.InZoneDeListe }}</td>
+            </tr>
+            <tr>
+                <th>Date départ</th>
+                <td>{{ designation.dateDepartDesign ? designation.dateDepartDesign|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date retour</th>
+                <td>{{ designation.dateRetourDesign ? designation.dateRetourDesign|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Ténue</th>
+                <td>{{ designation.tenues.numeroTn }}</td>
+            </tr>
+            <tr>
+                <th>Armement</th>
+                <td>{{ designation.typeArmements.nomArm }}</td>
+            </tr>
+            <tr>
+                <th>Munition</th>
+                <td>{{ designation.munitions.nomMun }}</td>
+            </tr>
+            <tr>
+                <th>Service</th>
+                <td>{{ designation.services.nomSce }}</td>
+            </tr>
+            <tr>
+                <th>Transport</th>
+                <td>{{ designation.transports.nomTransp }}</td>
+            </tr>
+            <tr>
+                <th>Distance</th>
+                <td>{{ designation.distance }}</td>
+            </tr>
+            <tr>
+                <th>Itineraire</th>
+                <td>{{ designation.itineraire }}</td>
+            </tr>
+            {#<tr>
+                <th>Desgn_created</th>
+                <td>{{ designation.desgnCreated ? designation.desgnCreated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Design_updated</th>
+                <td>{{ designation.designUpdated ? designation.designUpdated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>#}
+            <tr>
+                <th>Ordres spéciaux</th>
+                <td>{{ designation.ordreSpeciaux }}</td>
+            </tr>
+            <tr>
+                <th>Suite à donner</th>
+                <td>{{ designation.suiteADonner }}</td>
+            </tr>
+            <tr>
+                <th>Observations</th>
+                <td>{{ designation.observations }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+            <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_designations_index') }}">Retour à la liste</a></div>
+            <div class="col col-4">{{ include('designations/_delete_form.html.twig') }}</div>
+            <div class="col col-4"><a class="btn btn-sm btn-warning" href="{{ path('app_designations_edit', {'id': designation.id}) }}"><i class="fas fa-edit"></i>  Modifier</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

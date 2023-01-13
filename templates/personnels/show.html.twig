@@ -1,0 +1,58 @@
+
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Personnel{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            <i class="nav-icon fa fa-eye"></i>
+                Personnel
+        </h3>
+        <div class="card-tools">
+            <a href="{{ path('app_personnels_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ personnel.matriculePers }}</td>
+            </tr>
+            <tr>
+                <th>Grade</th>
+                <td>{{ personnel.gradePers }}</td>
+            </tr>
+            <tr>
+                <th>Nom et prénoms du personnel </th>
+                <td>{{ personnel.nomPers }} {{ personnel.prenomsPers ? personnel.prenomsPers : '' }}</td>
+            </tr>
+            <tr>
+                <th>Unité</th>
+                <td>{{ personnel.unites.InZoneDeListe }}</td>
+            </tr>            
+            <tr>
+                <th>Fonction</th>
+                <td>{{ personnel.fonctionsPers }}</td>
+            </tr>
+            
+            <tr>
+                <th>Est hors CR</th>
+                <td>{{ personnel.isOutCr ? 'Oui' : 'Non' }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+            <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_personnels_index') }}">Retour à la liste</a></div>
+            <div class="col col-4">{{ include('personnels/_delete_form.html.twig') }}</div>
+            <div class="col col-4"><a class="btn btn-sm btn-warning" href="{{ path('app_personnels_edit', {'id': personnel.id}) }}"><i class="fas fa-edit"></i>  Modifier</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

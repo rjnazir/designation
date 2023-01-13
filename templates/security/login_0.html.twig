@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+{# <form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputUsername">Username</label>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+    <label for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+   
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+</form> #}
+
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/signin/">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body styles="background:#000000;">
+
+    {# Ajouter par le developeur rjn #}
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-header bg-primary text-center">
+                                <div>
+                                    <div class="row no-gutters">
+                                        <div class="col-md-2">
+                                            <img src="./images/logo_gn.png" width="100%" class="img-fluid" alt="Gendarmerie Nationale">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div>
+                                                <h5 class="form-signin-heading">CIRCONSCRIPTION DE LA GENDARMERIE NATIONALE<br/>ANTANANARIVO</h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <img src="./images/logo_gn.png" width="100%" class="img-fluid" alt="Gendarmerie Nationale">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body pt-5">
+
+                                <div class="container">
+
+                                <form class="form-signin" method="post">
+                                    {# <h3 class="form-signin-heading">Veuillez vous connecter</h3> #}
+                                    <label class="sr-only" for="inputUsername">Nom d'utilisateur</label>
+                                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" {# placeholder="Nom d'utilisateur" #} class="form-control" autocomplete="username" required autofocus>
+                                    <label for="inputPassword" class="sr-only">Mot de passe</label>
+                                    <input type="password" name="password" id="inputPassword" class="form-control" {#  placeholder="Mot de passe" #} autocomplete="current-password" required>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                    <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="remember-me"> Souvenez-vous de moi
+                                    </label>
+                                    </div>
+                                    {% if error %}
+                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
+                                    <button class="btn btn-md btn-primary btn-block" type="submit">Se connecter</button>
+                                </form>
+
+                                </div> <!-- /container -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="ie10-viewport-bug-workaround.js"></script>
+  
+
+</body></html>
+
+{% endblock %}

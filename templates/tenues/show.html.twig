@@ -1,0 +1,45 @@
+
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Tenue{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            <i class="nav-icon fa fa-eye"></i>
+                Tenue
+        </h3>
+        <div class="card-tools">
+            <a href="{{ path('app_tenues_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Nom tenue</th>
+                    <td>{{ tenue.nomTn }}</td>
+                </tr>
+                <tr>
+                    <th>Numéro tenue</th>
+                    <td>{{ tenue.numeroTn }}</td>
+                </tr>
+                <tr>
+                    <th>Abréviation tenue</th>
+                    <td>{{ tenue.abreviationTn }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="row text-center">
+            <div class="col col-4"><a class="btn btn-sm btn-default" href="{{ path('app_tenues_index') }}">Retour à la liste</a></div>
+            <div class="col col-4">{{ include('tenues/_delete_form.html.twig') }}</div>
+            <div class="col col-4"><a class="btn btn-sm btn-warning" href="{{ path('app_tenues_edit', {'id': tenue.id}) }}"><i class="fas fa-edit"></i>  Modifier</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

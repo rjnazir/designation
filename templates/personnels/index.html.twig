@@ -1,0 +1,130 @@
+
+{% extends 'base_with_menu.html.twig' %}
+
+{% block title %}Liste des personnels{% endblock %}
+
+{% block body %}
+<div class="card">
+    <!-- Card-header -->
+    <div class="card-header bg-primary">
+        <h3 class="card-title">
+            {# <a href="{{ path('app_personnels_index') }}" class="btn btn-sm btn-primary"> #}
+                <i class="nav-icon fa fa-list"></i>
+                Liste des personnels
+            {# </a> #}
+        </h3>
+        <div class="card-tools">
+            {# <a href="{{ path('app_motifs_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-print"></i>
+            </a> #}
+            <a href="{{ path('app_personnels_new') }}" class="btn btn-sm btn-light">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div class="row mb-2">
+            {% for message in app.flashes('success') %}
+            <div class="col col-12 alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="col col-12">
+                <table id="example1" class="table table-sm table-bordered table-striped">
+                <thead>
+                    <tr class="text-center">
+                        <th>N°</th>
+                        <th>Matricule</th>
+                        <th>Grade</th>
+                        <th>Nom et prénoms</th>
+                        <th>Fonctions</th>
+                        <th>Unité</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for personnel in personnels %}
+                {% set i = ( i | default(0) ) + 1 %}
+                    <tr class="responsive">
+                        <td class="text-center">{{ i }}</td>
+                        <td>{{ personnel.matriculePers }}</td>
+                        <td>{{ personnel.gradePers }}</td>
+                        <td>{{ personnel.nomPers }} {{ personnel.prenomsPers ? personnel.prenomsPers : '' }}</td>
+                        <td>{{ personnel.fonctionsPers }}</td>
+                        {#<td>{{ personnel.isOutCr ? 'Oui' : 'Non' }}</td>#}
+                        <td>{{ personnel.unites.InZoneDeListe }}</td>
+                        <td class="text-center">
+                            <a href="{{ path('app_personnels_show', {'id': personnel.id}) }}" class="btn btn-sm btn-secondary">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{{ path('app_personnels_edit', {'id': personnel.id}) }}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{ path('app_personnels_delete', {'id': personnel.id}) }}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr class="bg-warning">
+                        <td class="text-center" colspan="7">Pas de personnel enregistré</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th class="text-right" colspan="7">
+                        <a href="{{ path('app_personnels_new') }}" class="btn btn-sm btn-primary">
+                            <i class="fa fa-plus"></i> Créer personnel
+                        </a>
+                    </th>
+                </tr>
+                </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {# Ajouté par le developpeur #}
+    <!-- Bootstrap 4 -->
+    <script src="../../adminlte3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../../adminlte3.1.0/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/jszip/jszip.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../adminlte3.1.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    {# <script src="../../adminlte3.1.0/dist/js/demo.js"></script> #}
+    <!-- Page specific script -->
+    <script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+    </script>
+{% endblock %}
+{# Fin ajout #}
