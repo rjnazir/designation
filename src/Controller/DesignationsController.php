@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Designations;
 use App\Form\DesignationsType;
+use App\Form\Designations2Type;
 use App\Repository\AutresRepository;
 use App\Repository\DesignationsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,6 +37,7 @@ class DesignationsController extends AbstractController
     public function new(Request $request, DesignationsRepository $designationsRepository): Response
     {
         $designation = new Designations();
+        /* $form = $this->createForm(Designations2Type::class, $designation); */
         $form = $this->createForm(DesignationsType::class, $designation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,6 +50,7 @@ class DesignationsController extends AbstractController
         }
 
         return $this->renderForm('designations/new.html.twig', [
+            /* 'designation' => $designation, */
             'designation' => $designation,
             'form' => $form,
         ]);

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Autres index{% endblock %}
+
+{% block body %}
+    <form action="" method="POST" >
+    <h1>Autres index</h1>
+    <input type="date" name="dateaafficher" id="dateaafficher" onchange="this.form.submit()" >
+    <select name="service" id="service" onchange="this.form.submit()" >
+        <option value=""></option>
+        {% for sce in sces %}
+        <option value="{{ sce.id }}">{{ sce.nomSce }}</option>
+        {% endfor %}
+    </select>
+    <br/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for autre in autres %}
+            <tr>
+                <td>{{ autre.id }}</td>
+                <td>
+                    <a href="{{ path('app_autres_show', {'id': autre.id}) }}">show</a>
+                    <a href="{{ path('app_autres_edit', {'id': autre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_autres_new') }}">Create new</a>
+    </form>
+{% endblock %}

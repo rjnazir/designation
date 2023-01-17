@@ -82,14 +82,41 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header text-bold">
+                    <i class="nav-icon fa fa-list-alt"></i>
+                    CONSULTATIONS
+                </li>
+                <li class="nav-item">             
+                    <a href="{{ path('app_autres_list') }}" class="nav-link">
+                        <i class="nav-icon fa fa-file text-primary"></i>
+                        Autres services
+                    </a>
+                </li>
+                <li class="nav-header text-bold">
                     <i class="nav-icon fa fa-bars"></i>
                     MISE A JOUR
                 </li>
-                <li class="nav-item">             
-                    <a href="{{ path('app_designations_index') }}" class="nav-link">
-                        <i class="nav-icon fa fa-file text-primary"></i>
-                        Désignations
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-table"></i>
+                        <p>
+                            Désignations
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ path('app_designations_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-infinity text-blue"></i>
+                                <p class="text">Services externe</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('app_autres_index') }}" class="nav-link">
+                                <i class="nav-icon fa fa-external-link-alt text-yellow"></i>
+                                <p class="text">Autres services</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{ path('app_absences_index') }}" class="nav-link">

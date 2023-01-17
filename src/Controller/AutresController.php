@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Autres;
 use App\Form\AutresType;
 use App\Repository\AutresRepository;
+use App\Repository\ServicesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,35 @@ class AutresController extends AbstractController
     {
         return $this->render('autres/index.html.twig', [
             'autres' => $autresRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/list", name="app_autres_list", methods={"GET", "POST"})
+     * @param Request $_request
+     */
+    public function list(Request $_request, AutresRepository $autresRepository, ServicesRepository $servicesRepository): Response
+    {
+        $_sces = $servicesRepository->findAll();
+        $_list = "";
+
+        if ($_request->getMethod() === 'POST' )
+        {
+            $_data = $_request->request->all();
+            $_dateselected = $_data['dateaafficher'];
+            $_service = $_data['service'];
+            (date('Y-m-d') == $_dateselected) ? $_dateselect = date('Y-m-d') : $_dateselected = $_dateselected;
+            /* $_list = $autresRepository->consultation($_dateselected); */
+            $_list = $autresRepository->consult($_dateselected, $_service, null);
+            /* return $this->render('autres/list.html.twig', [
+                'autres' => $autresRepository->consultation($_dateselected),
+            ]); */
+        }
+
+        return $this->render('autres/list.html.twig', [
+            // 'autres' => $autresRepository->consultation($_dateselected),
+            'autres' => $_list,
+            'sces' => $_sces,
         ]);
     }
 

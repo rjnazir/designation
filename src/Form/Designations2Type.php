@@ -18,7 +18,7 @@ use App\Entity\TypeArmements;
 use App\Entity\Tenues;
 use App\Entity\Services;
 
-class DesignationsType extends AbstractType
+class Designations2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -31,7 +31,7 @@ class DesignationsType extends AbstractType
                 ],
                 'required' => true,
             ])   
-            ->add('date_retour_design', null, [
+            /* ->add('date_retour_design', null, [
                 'label' => 'Date retour',
                 'widget' => 'single_text',
                 'attr' => [
@@ -40,7 +40,7 @@ class DesignationsType extends AbstractType
                 'required' => true,
             ])                       
             ->add('distance')
-            ->add('itineraire')
+            ->add('itineraire') */
             ->add('personnels', EntityType::class, [
                 'label' => 'Choisir le personnel',
                 'class' => Personnels::class,
@@ -55,7 +55,7 @@ class DesignationsType extends AbstractType
                 'choice_label' => 'InZoneDeListe',
                 'required' => false,
             ])
-            ->add('transports', EntityType::class, [
+            /* ->add('transports', EntityType::class, [
                 'label' => 'Transport',
                 'class' => Transports::class,
                 'choice_label' => 'nomTransp',
@@ -86,7 +86,7 @@ class DesignationsType extends AbstractType
                 'attr' => [
                     'class' => 'col-sm-12 form-control text-uppercase'
                 ],
-            ])
+            ]) */
             ->add('services', EntityType::class, [
                 'label' => 'Services',
                 'class' => Services::class,
@@ -94,16 +94,11 @@ class DesignationsType extends AbstractType
                 'attr' => [
                     'class' => 'col-sm-12 form-control text-uppercase'
                 ],
-                'query_builder' => function (EntityRepository $_er){
-                    return $_er
-                        ->createQueryBuilder('c')
-                        ->where("c.typesService = 1");
-            }
             ])
-            ->add('ordre_speciaux', TextareaType::class, [
+            /* ->add('ordre_speciaux', TextareaType::class, [
                 'label' => 'Ordres spéciaux',
                 'required' => true,
-            ])
+            ]) */
         ;
     }
 

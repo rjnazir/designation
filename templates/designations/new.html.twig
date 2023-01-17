@@ -17,6 +17,28 @@
                 {{ message }}
         </div>
         {% endfor %}
+        {# {{ form_start(form) }}
+                <div class="row">
+                        <div class="col">
+                        {{ form_row(form.personnels) }}
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col">
+                        {{ form_row(form.services) }}
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col">
+                        {{ form_row(form.date_depart_design) }}
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="card-body">
+                                {{ include('designations/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+                        </div>
+                </div>
+        {{ form_end(form) }} #}
         <div class="card-body">
                 {{ include('designations/_form.html.twig', {'button_label': 'Enregistrer'}) }}
         </div>
